@@ -12,36 +12,28 @@ import { setOnlineUsers } from './redux/userSlice';
 import { setSocket } from './redux/socketSlice';
 
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/" element={<Layout />}>
-            <Route index element={<Homepage />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-        </Route>
-    )
-);
-
 function App() {
-
     const { authUser } = useSelector(store => store.user);
     const { socket } = useSelector(store => store.socket);
+       const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path="/" element={<Layout />}>
+                <Route index element={authUser ? <Homepage /> : <Login />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+            </Route>
+        )
+    );
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(authUser);
         if (authUser) {
             const socketio = io('http://localhost:3000', {
-                query: {
-                    userId: authUser._id
-                }
+                query: { userId: authUser._id }
             });
-          dispatch(setSocket(socketio));
-          //console.log(socketio)
-
+            dispatch(setSocket(socketio));
             socketio.on('getOnlineUser', (onlineUsers) => {
-               // console.log('helllo',onlineUsers);
-                dispatch(setOnlineUsers(onlineUsers))
+                dispatch(setOnlineUsers(onlineUsers));
             });
             return () => socketio.close();
         } else {
@@ -50,7 +42,6 @@ function App() {
                 dispatch(setSocket(null));
             }
         }
-
     }, [authUser]);
 
     return (
@@ -60,5 +51,4 @@ function App() {
         </>
     );
 }
-
 export default App;

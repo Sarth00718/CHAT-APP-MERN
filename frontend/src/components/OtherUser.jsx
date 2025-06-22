@@ -20,8 +20,7 @@ const OtherUser = ({ user }) => {
                 className={`${selectedUser?._id === user?._id
                         ? 'bg-zinc-200 text-black'
                         : 'text-white'
-                    } flex gap-2 hover:text-black items-center hover:bg-zinc-200 rounded p-2 cursor-pointer`}
-            >
+                    } flex gap-2 hover:text-black items-center hover:bg-zinc-200 rounded p-2 cursor-pointer`} >
                 <div className={`avatar ${isOnline ? 'online' : ''}`}>
                     <div className='w-12 rounded-full'>
                         <img src={user?.profilePhoto} alt='user-profile' />
