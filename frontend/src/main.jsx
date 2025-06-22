@@ -12,7 +12,9 @@ import { persistStore } from 'redux-persist';
 
 let persistor = persistStore(store);
 
-export const BASE_URL= import.meta.env.VITE_BACKEND_URL
+//export const BASE_URL= import.meta.env.VITE_BACKEND_URL
+export const BASE_URL = 'http://localhost:3000'
+
 
 const root = createRoot(document.getElementById('root'));
 root.render(
