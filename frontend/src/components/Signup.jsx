@@ -21,7 +21,7 @@ function Signup() {
 
     try {
       console.log("Submitting signup form...");
-      const res = await axios.post(`http://localhost:3000/api/v1/user/register`, user, {
+      const res = await axios.post(`${BASE_URL}/api/v1/user/register`, user, {
         headers: {
           'Content-Type': 'application/json'
         },

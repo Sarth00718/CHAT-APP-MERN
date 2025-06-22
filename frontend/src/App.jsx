@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import io from 'socket.io-client';
 import { setOnlineUsers } from './redux/userSlice';
 import { setSocket } from './redux/socketSlice';
+import { BASE_URL } from './main.jsx';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
 
     useEffect(() => {
         if (authUser) {
-            const socketio = io('http://localhost:3000', {
+            const socketio = io(`${BASE_URL}`, {
                 query: { userId: authUser._id }
             });
             dispatch(setSocket(socketio));

@@ -12,6 +12,8 @@ import { persistStore } from 'redux-persist';
 
 let persistor = persistStore(store);
 
+export const BASE_URL= import.meta.env.VITE_BACKEND_URL
+
 const root = createRoot(document.getElementById('root'));
 root.render(
   <StrictMode>

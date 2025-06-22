@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setOtherUsers } from '../redux/userSlice.js' 
-
+import { BASE_URL } from '../main.jsx'
 const useGetOtherUser = () => {
     const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ const useGetOtherUser = () => {
             const getOtherUser = async () => {
                 try {
                     axios.defaults.withCredentials = true; // Ensure cookies are sent with requests
-                    const res = await axios.get('http://localhost:3000/api/v1/user/getother')
+                    const res = await axios.get(`${BASE_URL}/api/v1/user/getother`)
                     console.log("Other users fetched successfully:", res.data);
                     dispatch(setOtherUsers(res.data.users)); // Assuming you have an action to set other users
                 } catch (error) {

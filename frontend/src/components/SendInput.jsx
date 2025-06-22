@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setMessages } from '../redux/messageSlice';
 import axios from 'axios';
+import { BASE_URL } from '../main';
 
 
 function SendInput() {
@@ -16,8 +17,11 @@ function SendInput() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:3000/api/v1/message/send/${selectedUser._id}`, {message}, {
-        withCredentials: true, // Ensure cookies are sent with requests
+      const res = await axios.post(`${BASE_URL}/api/v1/message/send/${selectedUser._id}`, {message}, {
+        withCredentials: true, 
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
       setMessage('');
       console.log(res.data);
