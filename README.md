@@ -77,8 +77,8 @@ A real-time chat application built with the **MERN stack** (MongoDB, Express.js,
    MONGO_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret
 
-4.▶️ Run the Application
-  In two separate terminals:
+4. ▶️ Run the Application
+   In two separate terminals:
   # Terminal 1 - Start Backend
     cd backend
     npm run dev
